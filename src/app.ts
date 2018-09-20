@@ -21,6 +21,8 @@ class App {
   }
 
   async init(): Promise<void> {
+    document.querySelector(`#cube1`)!.appendChild(this.svg[1].element);
+    document.querySelector(`#cube2`)!.appendChild(this.svg[2].element);
 
     document.querySelector("#connect1")!.addEventListener("click", function() {
       this.initCube(1);
@@ -35,14 +37,13 @@ class App {
   }
 
   async initCube(idx: number): Promise<void> {
-    const div = document.querySelector(`#cube${idx}`)!;
-    div.textContent = `Connecting to cube #${idx}...`
-
+    const div = document.querySelector(`#connect${idx}`)!;
+    div.textContent = `Connecting...`
 
     const cube = await (USE_KEYBOARD ? debugKeyboardConnect() : connect());
 
-    div.textContent = "";
-    document.querySelector(`#cube${idx}`)!.appendChild(this.svg[idx].element);
+    div.textContent = "Connected!";
+    document.querySelector(`#cube${idx}`)!.classList.add("connected");
     this.setState(idx, (await cube.getState())!);
     cube.addMoveListener(this.cubeUpdated.bind(this, idx));
   }
