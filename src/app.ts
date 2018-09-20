@@ -1,7 +1,7 @@
 import {algToString, fromJSON, BlockMove, invert, Sequence, coalesceBaseMoves} from "alg"
 import {connect, debugKeyboardConnect, MoveEvent} from "cuble"
 import {Transformation, SVG, Combine, Invert, Puzzles, KPuzzle, EquivalentStates} from "kpuzzle"
-import {offThread} from "min2phase"
+import {defaultOffThread} from "min2phase"
 
 console.log("match-the-scramble");
 
@@ -32,7 +32,7 @@ class App {
     }.bind(this));
 
     this.setStale(true);
-    await offThread.initialize();
+    await defaultOffThread.initialize();
     this.setStale(false);
   }
 
@@ -109,13 +109,13 @@ class App {
         if (this.isSolution(mts, coalescedPrevious)) {
           solution = coalescedPrevious;
         } else {
-          solution = fromJSON(await offThread.solve(mts));
+          solution = fromJSON(await defaultOffThread.solve(mts));
         }
       } else {
-        solution = fromJSON(await offThread.solve(mts));
+        solution = fromJSON(await defaultOffThread.solve(mts));
       }
     } else {
-      solution = fromJSON(await offThread.solve(mts));
+      solution = fromJSON(await defaultOffThread.solve(mts));
     }
 
     if (id == this.counter) {
