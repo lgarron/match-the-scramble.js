@@ -21,12 +21,6 @@
       padding: 0.5em;
       box-sizing: border-box;
     }
-    #content > #mts-alg.right-aligned {
-      justify-content: flex-end;
-    }
-    #mts-alg.stale {
-      color: rgba(0, 0, 0, 0.4);
-    }
     #content > * {
       display: grid;
       align-items: center;
@@ -50,11 +44,29 @@
     #mts-alg {
       grid-column: 1 / span 2;
     }
+    #mts-alg a {
+      color: rgba(0, 64, 255, 1);
+    }
+    #mts-alg.stale a {
+      color: rgba(0, 64, 255, 0.3);
+    }
+    #mts-alg.show-link {
+      justify-content: flex-end;
+    }
+    #mts-alg.show-link #mts-info {
+      display: none;
+    }
+    #mts-alg:not(.show-link) #mts-link {
+      display: none;
+    }
   </style>
 </head>
 <body>
 <div id="content">
-  <div id="mts-alg">Match the Scramble</div>
+  <div id="mts-alg">
+    <span id="mts-info">Match the Scramble</span>
+    <a id="mts-link" target="_blank"></a>
+  </div>
   <div><button id="connect1">Connect Solving Cube</button></div>
   <div><button id="connect2">Connect Target Cube</button></div>
   <div id="cube1"></div>

@@ -1,4 +1,4 @@
-import {algToString, fromJSON, BlockMove, invert, Sequence, coalesceBaseMoves} from "alg"
+import {algToString, fromJSON, BlockMove, invert, Sequence, coalesceBaseMoves, algCubingNetLink} from "alg"
 import {connect, debugKeyboardConnect, MoveEvent} from "cuble"
 import {Transformation, SVG, Combine, Invert, Puzzles, KPuzzle, EquivalentStates} from "kpuzzle"
 import {defaultOffThread} from "min2phase"
@@ -121,8 +121,20 @@ class App {
     if (id == this.counter) {
       this.setStale(false);
       this.previousSolution = solution;
-      document.querySelector("#mts-alg")!.classList.add("right-aligned");
-      document.querySelector("#mts-alg")!.textContent = algToString(solution);
+      this.setLink(solution);
+    }
+  }
+
+  private setLink(a: Sequence) {
+    if (a.nestedUnits.length === 0) {
+      document.querySelector("#mts-info")!.textContent = "Matching!";
+      document.querySelector("#mts-alg")!.classList.remove("show-link");
+    } else {
+      const linkElem = <HTMLAnchorElement>document.querySelector("#mts-link")!;
+      linkElem.textContent = algToString(a);
+      // TODO: Setup moves
+      linkElem.href = algCubingNetLink({alg: a});
+      document.querySelector("#mts-alg")!.classList.add("show-link");
     }
   }
 }
