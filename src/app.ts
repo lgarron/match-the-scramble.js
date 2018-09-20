@@ -121,6 +121,7 @@ class App {
     if (id == this.counter) {
       this.setStale(false);
       this.previousSolution = solution;
+      document.querySelector("#mts-alg")!.classList.add("right-aligned");
       document.querySelector("#mts-alg")!.textContent = algToString(solution);
     }
   }

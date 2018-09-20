@@ -14,12 +14,14 @@
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 20px 3fr
     }
-    #mts-alg {
+    #content > #mts-alg {
       font-family: Verdana, Helvetica, sans-serif;
       font-size: 3vw;
       padding: 0.5em;
-      text-align: center;
       box-sizing: border-box;
+    }
+    #content > #mts-alg.right-aligned {
+      justify-content: flex-end;
     }
     #mts-alg.stale {
       color: rgba(0, 0, 0, 0.4);
