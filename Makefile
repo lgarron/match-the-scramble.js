@@ -19,3 +19,8 @@ clean: clean-dist
 .PHONY: clean-dist
 clean-dist:
 	rm -rf ./dist
+
+.PHONY: deploy
+deploy:
+	rsync test/html/index.html cubing.net:~/experiments.cubing.net/match-the-scramble/
+	rsync dist/match-the-scramble.js cubing.net:~/experiments.cubing.net/match-the-scramble/
