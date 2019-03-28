@@ -11,10 +11,10 @@
   },
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "alg": "^0.9.17",
+    "alg": "^0.9.18",
     "babel-polyfill": "^6.26.0",
-    "cuble": "^0.9.17",
-    "kpuzzle": "^0.9.17",
+    "cuble": "^0.9.18",
+    "kpuzzle": "^0.9.18",
     "min2phase": "^0.0.1"
   },
   "externalsForWebpack": [],
